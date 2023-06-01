@@ -25,7 +25,7 @@ pp = eig(Gp);
 Tau = 1/abs(pp);
 tap = 3*Tau;
 plot(tap,0.95,'b*');
-
+a = 0;
 %vermelho planta + o controlador
 
 
