@@ -4,13 +4,12 @@ pkg load control;
 pkg load signal;
 
 %%1.a : Projete um controlador proporcional para atender à especificação de sobressinal em que Gc = Kp.
-N = 5
+N = 5;
 num = 1;
 den = conv(conv([1 0], [1 2]), [1 2*N]);
 GMA = tf(num, den);
 
 %graph one --------
-subplot(2,1,1);
 rlocus(GMA);
 legend off;
 hold on;
@@ -18,16 +17,23 @@ imaginaryAxis = linspace(-20, 20);
 realAxis = zeros(size(imaginaryAxis));
 plot(imaginaryAxis, realAxis, 'k');
 plot(realAxis, imaginaryAxis, 'k');
-K = 10;
-GMF = feedback(K * GMA, 1);
 t = 0:0.01:10;
 %calculating damping factor
-df = (-log(10/100)) / sqrt((pi^2) + (log(10/100))^2)
-
+df = (-log(10/100)) / sqrt((pi^2) + (log(10/100))^2);
+phaseAngle = 180 - acosd(df);
+%ploting the phaseAngle
+phaseAngleStraight = linspace(0,-30);
+phaseAngleFunction = -deg2rad(phaseAngle)*phaseAngleStraight;
+plot(phaseAngleStraight, phaseAngleFunction);
+[Px, Py] = ginput(1);
+k=-polyval(GMA.den{1},Px)/(polyval(GMA.num{1},Px));
+k=abs(real(k));
+GMF = feedback(k*GMA,1);
 hold off;
 
+
 %second one graph ---------
-subplot(2,1,2);
+figure
 hold on;
 [PV, t] = step(GMF, t);
 plot(t,PV,'g');
