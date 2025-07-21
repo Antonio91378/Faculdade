@@ -288,6 +288,9 @@
             <mxPoint x="62" y="-39" as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="FOVDjTPA4pTUdEtxRhGX-24" value="&lt;b&gt;PLANTA 3&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="645.27" y="-1290" width="80" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
